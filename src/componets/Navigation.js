@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const[active, setActive] = useState(false)
   const [mItem, setmItem] = useState(null);
   
   const menuItem = [
-    { name: 'test1' },
-    { name: 'test2' },
+    { name: 'Home',link:'/' },
+    { name: 'Gsap',link:'/Gsap' },
     { name: 'test3' },
     { name: 'test4' },
     { name: 'test5' },
   ];
+
+  const navigate = useNavigate();
 
   const handleMouseEnter =()=>{
     setActive(true)
@@ -24,12 +27,15 @@ const Navigation = () => {
       setmItem(null)
     }else{
       setmItem(item.name);
+      if (item.link) {
+        navigate(item.link);
+      }
     }
   };
 
   return(   
     <div className='w-screen'>
-      <div className={`${active ? 'h-[10vh]' : 'h-[6vh]'} bg-black`}
+      <div className={`${active ? 'h-[10vh]' : 'h-[6vh]'} bg-black transition-all duration-700`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       >
