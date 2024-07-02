@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -7,8 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 const ScrollAnimationComponent = () => {
   const boxRef = useRef(null);
 
-  useEffect(() => {
-ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  useLayoutEffect(() => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
     gsap.to(boxRef.current, {
       x: 500, // 水平移动距离
@@ -20,13 +20,14 @@ ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         end: "bottom 50%", // 元素离开视口的位置
         scrub: true, // 使动画与滚动同步
         pin: false, // 固定元素在视口中间
-        markers: true // 显示滚动触发标记（调试用）
+        markers: false // 显示滚动触发标记（调试用）
       }
     });
   }, []);
 
+
   return (
-    <div className="flex flex-col items-center justify-center h-[600vh] bg-gray-100">
+    <div className="flex flex-col items-start justify-center h-[600vh] bg-gray-100">
       <div className="flex items-center justify-center h-screen">
         <div
           ref={boxRef}
