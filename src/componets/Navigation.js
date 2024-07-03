@@ -9,8 +9,8 @@ const Navigation = () => {
   const menuItem = [
     { name: 'Home',link:'/' },
     { name: 'Gsap',link:'/Gsap' },
-    { name: 'test3' },
-    { name: 'test4' },
+    { name: 'Airplane', link:'/Scroll' },
+    { name: 'Rechart',link:'/Rechart' },
     { name: 'test5' },
   ];
 

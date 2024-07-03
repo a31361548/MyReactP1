@@ -3,14 +3,31 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/autoplay'
+import 'swiper/css/autoplay';
 
 import { Navigation, Pagination,EffectCoverflow,Autoplay } from 'swiper/modules';
 import '../css/home.css'; // 引入自定义样式
+import Fallow from '../componets/Fallow'
+
+const slides = [
+  "https://picsum.photos/600/400?random=1",
+  "https://picsum.photos/600/400?random=2",
+  "https://picsum.photos/600/400?random=3",
+  "https://picsum.photos/600/400?random=4",
+  "https://picsum.photos/600/400?random=5",
+  "https://picsum.photos/600/400?random=6",
+  "https://picsum.photos/600/400?random=7",
+  "https://picsum.photos/600/400?random=8",
+  "https://picsum.photos/600/400?random=9"
+];
 
 const Home = () => {
+
+
+
   return (
     <div>
+      <Fallow mouse="gif"/>
       <Swiper
         className='mt-4'
         modules={[Navigation, Pagination, EffectCoverflow,Autoplay]}
@@ -31,78 +48,26 @@ const Home = () => {
         loop={true}
         autoplay={{delay:2500,}}
       >
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=1"
-              alt="Slide 1"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=2"
-              alt="Slide 2"
-              className="w-64 h-full object-cover "
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=3"
-              alt="Slide 3"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=4"
-              alt="Slide 4"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=5"
-              alt="Slide 4"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=6"
-              alt="Slide 4"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=7"
-              alt="Slide 4"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide  style={{ width: '256px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="w-64 h-64 flex items-center justify-center">
-            <img
-              src="https://picsum.photos/600/400?random=8"
-              alt="Slide 4"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </SwiperSlide>
+        {slides.map((src, index) => (
+          <SwiperSlide
+            key={index}
+            style={{
+              width: '256px',
+              height: '256px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <div className="w-full h-64 flex items-center justify-center">
+              <img
+                src={src}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

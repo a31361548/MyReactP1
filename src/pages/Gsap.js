@@ -1,6 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Fallow from '../componets/Fallow'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,6 +28,8 @@ const ScrollAnimationComponent = () => {
 
 
   return (
+    <>
+    <Fallow mouse="circle"/>
     <div className="flex flex-col items-start justify-center h-[600vh] bg-gray-100">
       <div className="flex items-center justify-center h-screen">
         <div
@@ -37,6 +40,7 @@ const ScrollAnimationComponent = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
