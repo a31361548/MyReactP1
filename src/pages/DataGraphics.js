@@ -1,5 +1,6 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, RadialBarChart, RadialBar } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
+import RingAnimate from '../componets/RingAnimate';
 
 const barData = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
@@ -18,42 +19,43 @@ const pieData = [
   { name: 'Group D', value: 200 },
 ];
 
-const radialData = [
-  { name: '18-24', uv: 31.47, fill: '#8884d8' },
-  { name: '25-29', uv: 26.69, fill: '#83a6ed' },
-  { name: '30-34', uv: 15.69, fill: '#8dd1e1' },
-  { name: '35-39', uv: 8.22, fill: '#82ca9d' },
-  { name: '40-49', uv: 8.63, fill: '#a4de6c' },
-  { name: '50+', uv: 2.63, fill: '#d0ed57' },
-  { name: 'unknown', uv: 6.67, fill: '#ffc658' },
+const dataValue = 65; // 單筆數據，表示填充的百分比
+
+const donutData = [
+  { x: 'Filled', y: dataValue },
+  { x: 'Empty', y: 100 - dataValue },
 ];
 
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+const CustomXAxis = ({ dataKey = 'name' }) => <XAxis dataKey={dataKey} />;
+const CustomYAxis = () => <YAxis />;
 
 function MyCharts() {
   return (
     <div className='flex flex-wrap justify-around'>
       <div>
-      <h2>Bar Chart</h2>
-      <BarChart
-        width={500}
-        height={300}
-        data={barData}
-        margin={{
-          top: 5, right: 30, left: 20, bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
-      </BarChart>
+        <h2>Bar Chart</h2>
+        <BarChart
+          width={500}
+          height={300}
+          data={barData}
+          margin={{
+            top: 5, right: 30, left: 20, bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <CustomXAxis />
+          <CustomYAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="pv" fill="#8884d8" />
+          <Bar dataKey="uv" fill="#82ca9d" />
+        </BarChart>
       </div>
       <div>
-      <h2>Pie Chart</h2>
+        <h2>Pie Chart</h2>
         <PieChart width={400} height={400}>
           <Pie
             data={pieData}
@@ -62,10 +64,10 @@ function MyCharts() {
             labelLine={false}
             label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
               const RADIAN = Math.PI / 180;
-              const radius = innerRadius + (outerRadius - innerRadius) * 0.65;  // 這裡調整了距離，使文字更靠近圓心
+              const radius = innerRadius + (outerRadius - innerRadius) * 0.65;
               const x = cx + radius * Math.cos(-midAngle * RADIAN);
               const y = cy + radius * Math.sin(-midAngle * RADIAN);
-            
+              
               return (
                 <text
                   x={x}
@@ -89,26 +91,8 @@ function MyCharts() {
         </PieChart>
       </div>
       <div>
-      <h2>Radial Bar Chart</h2>
-      <RadialBarChart
-        width={500}
-        height={300}
-        cx={150}
-        cy={150}
-        innerRadius={20}
-        outerRadius={140}
-        barSize={10}
-        data={radialData}
-      >
-        <RadialBar
-          minAngle={15}
-          label={{ position: 'insideStart', fill: '#fff' }}
-          background
-          clockWise
-          dataKey="uv"
-        />
-        <Legend iconSize={10} width={120} height={140} layout="vertical" verticalAlign="middle" />
-      </RadialBarChart>
+        <h2>RingAnimate by Victory</h2>
+        <RingAnimate data={donutData} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import Navigation from './componets/Navigation';
 import Home from './pages/Home';
 import Gsap from './pages/Gsap'
 import Scroll from './pages/ScrollAnimate'
-import Rechart from './pages/Rechart'
+import DataGraphics from './pages/DataGraphics'
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/gsap" element={<Gsap />} />
         <Route path="/scroll" element={<Scroll />} />
-        <Route path="/rechart" element={<Rechart />} />
+        <Route path="/datagraphics" element={<DataGraphics />} />
       </Routes>
     </Router>
   );

@@ -10,7 +10,7 @@ const Navigation = () => {
     { name: 'Home',link:'/' },
     { name: 'Gsap',link:'/Gsap' },
     { name: 'Airplane', link:'/Scroll' },
-    { name: 'Rechart',link:'/Rechart' },
+    { name: 'DataGraphics',link:'/DataGraphics' },
     { name: 'test5' },
   ];
 
