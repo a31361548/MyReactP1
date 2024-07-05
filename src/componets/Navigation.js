@@ -11,7 +11,7 @@ const Navigation = () => {
     { name: 'Gsap',link:'/Gsap' },
     { name: 'Airplane', link:'/Scroll' },
     { name: 'DataGraphics',link:'/DataGraphics' },
-    { name: 'test5' },
+    { name: 'Test5', },
   ];
 
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Navigation = () => {
   };
 
   return(   
-    <div className='w-screen'>
+    <div className='w-full'>
       <div className={`${active ? 'h-[10vh]' : 'h-[6vh]'} bg-black transition-all duration-700`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

@@ -6,6 +6,7 @@ import Gsap from './pages/Gsap'
 import Scroll from './pages/ScrollAnimate'
 import DataGraphics from './pages/DataGraphics'
 
+
 function App() {
   return (
     <Router>
