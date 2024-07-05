@@ -1,56 +1,72 @@
-// PaperAirplane.js
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import paperAirplane from '../image/airplan.gif';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import paperAirplane from '../image/airplan.gif'; // 修改為你的圖片路徑
 
 gsap.registerPlugin(MotionPathPlugin);
 
-const PaperAirplane = () => {
-  const airplaneRef = useRef(null);
+const ScrollAnimation = () => {
+  const imageRef = useRef(null);
+  const [isFixed, setIsFixed] = useState(false);
+  const [navHeight, setNavHeight] = useState(0); // 初始化為 0
 
   useEffect(() => {
-    gsap.set(airplaneRef.current, {
-      opacity: 1,
-    });
+    const updateNavHeight = () => {
+      const navHeightInVH = window.innerHeight * 0.06; // 計算 6vh
+      setNavHeight(navHeightInVH);
+    };
 
-    gsap.to(airplaneRef.current, {
-      duration: 10,
-      motionPath: {
-        path: "#flightPath",
-        align: "#flightPath",
-        alignOrigin: [0.5, 0.5],
-        autoRotate: true,
-      },
-      ease: "none",
-      repeat: -1,
-    });
+    updateNavHeight(); // 初次計算
+    window.addEventListener('resize', updateNavHeight); // 窗口調整大小時重新計算
+
+    return () => {
+      window.removeEventListener('resize', updateNavHeight);
+    };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+
+      if (scrollTop > navHeight) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const totalDocScrollLength = docHeight - windowHeight;
+      const scrollPosition = scrollTop / totalDocScrollLength;
+
+      const xPosition = scrollPosition * 100;
+      const yPosition = Math.sin(scrollPosition * Math.PI * 2) * 40; // 振幅為 40px 的正弦曲線
+
+      gsap.to(imageRef.current, {
+        x: `${xPosition}vw`,
+        y: `${yPosition}px`,
+        ease: 'none',
+        markers: true,
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [navHeight]);
+
   return (
-    <div style={{ position: 'relative', height: '200vh' }}> {/* 使頁面足夠長以便測試滾動 */}
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
-        <path
-          id="flightPath"
-          d="M10,150 C40,100 70,150 100,100 S150,50 180,100 S250,150 300,100 S350,50 400,100 S450,150 500,100"
-          stroke="none"
-          fill="none"
-        />
-      </svg>
-      <img
-        ref={airplaneRef}
-        src={paperAirplane}
-        alt="Paper Airplane"
-        style={{
-          position: 'absolute',
-          width: '100px',
-          height: 'auto',
-          top: '0',
-          left: '0',
-        }}
-      />
+    <div className="relative h-[200vh] overflow-x-hidden bg-red-300">
+      <div
+        ref={imageRef}
+        className={`w-20 h-20 ${isFixed ? 'fixed top-4' : `absolute top-[${navHeight}px]`}`} // 動態設置 top 值
+      >
+        <img src={paperAirplane} alt="paperAirplane" className="h-full w-auto" />
+      </div>
     </div>
   );
 };
 
-export default PaperAirplane;
+export default ScrollAnimation;

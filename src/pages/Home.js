@@ -26,10 +26,9 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div className='bg-red-300 h-screen'>
       <Fallow mouse="gif"/>
       <Swiper
-        className='mt-4'
         modules={[Navigation, Pagination, EffectCoverflow,Autoplay]}
         effect="coverflow"
         grabCursor={true}
@@ -50,6 +49,7 @@ const Home = () => {
       >
         {slides.map((src, index) => (
           <SwiperSlide
+          className='mt-4'
             key={index}
             style={{
               width: '256px',
