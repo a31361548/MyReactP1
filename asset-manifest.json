@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.08c9faa2.css",
-    "main.js": "/static/js/main.9a687034.js",
-    "static/media/箭頭.png": "/static/media/箭頭.d94825c7e7c3c2a14fc2.png",
-    "static/media/airplan.gif": "/static/media/airplan.d65898d7837e93fc28ca.gif",
-    "index.html": "/index.html",
-    "main.08c9faa2.css.map": "/static/css/main.08c9faa2.css.map",
-    "main.9a687034.js.map": "/static/js/main.9a687034.js.map"
+    "main.css": "/MyReactP1/static/css/main.0042d001.css",
+    "main.js": "/MyReactP1/static/js/main.6208db90.js",
+    "static/media/箭頭.png": "/MyReactP1/static/media/箭頭.d94825c7e7c3c2a14fc2.png",
+    "static/media/airplan.gif": "/MyReactP1/static/media/airplan.d65898d7837e93fc28ca.gif",
+    "index.html": "/MyReactP1/index.html",
+    "main.0042d001.css.map": "/MyReactP1/static/css/main.0042d001.css.map",
+    "main.6208db90.js.map": "/MyReactP1/static/js/main.6208db90.js.map"
   },
   "entrypoints": [
-    "static/css/main.08c9faa2.css",
-    "static/js/main.9a687034.js"
+    "static/css/main.0042d001.css",
+    "static/js/main.6208db90.js"
   ]
 }
