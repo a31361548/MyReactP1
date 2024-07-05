@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/MyReactP1/static/css/main.416567a0.css",
-    "main.js": "/MyReactP1/static/js/main.5de31ef9.js",
+    "main.js": "/MyReactP1/static/js/main.a1a5560f.js",
     "static/media/箭頭.png": "/MyReactP1/static/media/箭頭.d94825c7e7c3c2a14fc2.png",
     "static/media/airplan.gif": "/MyReactP1/static/media/airplan.d65898d7837e93fc28ca.gif",
     "index.html": "/MyReactP1/index.html",
     "main.416567a0.css.map": "/MyReactP1/static/css/main.416567a0.css.map",
-    "main.5de31ef9.js.map": "/MyReactP1/static/js/main.5de31ef9.js.map"
+    "main.a1a5560f.js.map": "/MyReactP1/static/js/main.a1a5560f.js.map"
   },
   "entrypoints": [
     "static/css/main.416567a0.css",
-    "static/js/main.5de31ef9.js"
+    "static/js/main.a1a5560f.js"
   ]
 }
