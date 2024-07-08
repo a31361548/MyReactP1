@@ -22,3 +22,7 @@
   background-image: url('../image/箭頭.png');
   transform: rotate(180deg);
 }
+
+.swiper{
+  z-index: 0;
+}
