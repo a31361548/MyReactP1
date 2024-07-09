@@ -9,45 +9,54 @@ const Fallow = ({ mouse }) => {
   const yToRef = useRef(null);
 
   useLayoutEffect(() => {
-    let xTo,yTo;
-    if (mouse === 'circle'){
-      xTo = gsap.quickTo(flairRef.current, "x", { duration: 0.8, ease: "power3" });
-      yTo = gsap.quickTo(flairRef.current, "y", { duration: 0.8, ease: "power3" });
-    }else{
-      xTo = gsap.quickTo(flairRef.current, "x", { duration: 1, ease: "power3" });
-      yTo = gsap.quickTo(flairRef.current, "y", { duration: 1, ease: "power3" });
-    }
-    xToRef.current = xTo;
-    yToRef.current = yTo;
-
-    const handleMouseMove = (e) => {
-      let offsetX, offsetY;
+    let xTo, yTo;
+    if (flairRef.current) { // 检查 flairRef.current 是否存在
       if (mouse === 'circle') {
-        offsetX = 5;
-        offsetY = -15;
+        xTo = gsap.quickTo(flairRef.current, "x", { duration: 0.8, ease: "power3" });
+        yTo = gsap.quickTo(flairRef.current, "y", { duration: 0.8, ease: "power3" });
       } else {
-        offsetX = 20; // 根據你的需要設置
-        offsetY = -45; // 根據你的需要設置
+        xTo = gsap.quickTo(flairRef.current, "x", { duration: 1, ease: "power3" });
+        yTo = gsap.quickTo(flairRef.current, "y", { duration: 1, ease: "power3" });
       }
-      xTo(e.clientX + offsetX);
-      yTo(e.clientY + offsetY);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    if (mouse === 'circle') {
-      const changeColor = () => {
-        const newColor = getRandomRgba();
-        gsap.to(flairRef.current, { borderColor: newColor, duration: 1.5, ease: "power3", onComplete: changeColor });
+      xToRef.current = xTo;
+      yToRef.current = yTo;
+  
+      const handleMouseMove = (e) => {
+        let offsetX, offsetY;
+        if (mouse === 'circle') {
+          offsetX = 5;
+          offsetY = -15;
+        } else {
+          offsetX = 20; // 根据你的需要设置
+          offsetY = -45; // 根据你的需要设置
+        }
+        xTo(e.clientX + offsetX);
+        yTo(e.clientY + offsetY);
       };
-
-      changeColor(); // 初始化颜色变化
+  
+      window.addEventListener('mousemove', handleMouseMove);
+  
+      if (mouse === 'circle') {
+        const changeColor = () => {
+          const newColor = getRandomRgba();
+          if (flairRef.current) { // 检查 flairRef.current 是否存在
+            gsap.to(flairRef.current, { borderColor: newColor, duration: 1.5, ease: "power3", onComplete: changeColor });
+          }
+        };
+  
+        changeColor(); // 初始化颜色变化
+      }
+  
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        xToRef.current = null; // 清除引用
+        yToRef.current = null; // 清除引用
+      };
+    } else {
+      console.warn('GSAP target null not found.');
     }
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
   }, [mouse]);
+  
 
   const getRandomRgba = () => {
     const r = Math.floor(Math.random() * 256);

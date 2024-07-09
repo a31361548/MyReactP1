@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import paperAirplane from '../image/airplan.gif';
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { MotionPathPlugin, ScrollTrigger } from 'gsap/all'; // 合并导入
 
-gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(MotionPathPlugin, ScrollTrigger); // 注册插件
 
 const ScrollAnimation = () => {
   const imageRef = useRef(null);
@@ -46,7 +46,6 @@ const ScrollAnimation = () => {
         x: `${xPosition}vw`,
         y: `${yPosition}px`,
         ease: 'none',
-        markers: true,
       });
     };
 
