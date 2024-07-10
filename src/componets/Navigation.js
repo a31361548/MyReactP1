@@ -26,16 +26,16 @@ const Navigation = ({ onModalTabClick }) => {
     ];
     if (!isLoggedIn) {
       items.push({ name: 'ModalTab', link: '' });
-    }
-    if (isLoggedIn) {
+    } else {
       items.push({ name: 'Airplane', link: '/Scroll' });
       items.push({ name: 'Logout', link: '' }); 
-    }
-    if(isLoggedIn && role === '1' ){
-      items.push({name:'Settings',link:'/Settings'})
+      if (role === 1) {
+        items.push({ name: 'Settings', link: '/Settings' });
+      }
     }
     setMenuItems(items);
   }, [isLoggedIn, role]);
+  
 
   const navigate = useNavigate();
   
